@@ -49,12 +49,22 @@ export default async (request) => {
 
     const data = await result.json();
 
-    if (!result.ok) {
-      return new Response(
-        JSON.stringify({ error: "Gemini n'a pas pu répondre. Vérifie la clé et le quota." }),
-        { status: 502, headers: { "Content-Type": "application/json; charset=utf-8" } }
-      );
+    
+if (!result.ok) {
+  const detail = data.error?.message || "Erreur inconnue de Gemini";
+  const status = result.status;
+
+  return new Response(
+    JSON.stringify({
+      error: "Erreur Gemini (" + status + ") : " + detail
+    }),
+    {
+      status: 502,
+      headers: { "Content-Type": "application/json; charset=utf-8" }
     }
+  );
+}
+
 
     const reply = data.candidates?.[0]?.content?.parts
       ?.map(part => part.text || "")
