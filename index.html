@@ -84,7 +84,7 @@ function replyFor(text){
 }
 async function sendText(text){if(!text||busy)return;busy=true;addMsg("user",text);input.value="";turn++;const typing=document.createElement("div");typing.className="typing";typing.textContent="MILO réfléchit…";messages.appendChild(typing);messages.scrollTop=messages.scrollHeight;
  let response;
- try{const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mood,name:userName,message:text,turn})});if(r.ok){const data=await r.json();response=data.reply;}}catch(e){}
+ try{const r=await fetch("/.netlify/functions/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mood,name:userName,message:text,turn})});if(r.ok){const data=await r.json();response=data.reply;}}catch(e){}
  if(!response)response=replyFor(text);
  typing.remove();addMsg("bot",response);setQuick();busy=false;}
 $("#send").addEventListener("click",()=>sendText(input.value.trim()));input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendText(input.value.trim());}});
