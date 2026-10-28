@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e8f0e8">
+<meta name="description" content="MILO, un compagnon du quotidien pour parler, faire le point et trouver une petite prochaine étape.">
+<title>MILO — Ton compagnon du quotidien</title>
+<style>
+:root{--bg:#f5f5ef;--paper:#fffefa;--ink:#203329;--muted:#6c7b70;--green:#32694b;--soft:#e8f0e8;--line:#dce5dc;--user:#dce9ff;--shadow:0 18px 50px rgba(37,68,48,.09)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% 0%,#e6efe5 0,transparent 33%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
+button,textarea,input{font:inherit}button{cursor:pointer}
+.wrap{max-width:780px;margin:0 auto;padding:22px 16px 36px}.brand{display:flex;align-items:center;gap:12px;margin:6px 0 20px}.mark{width:48px;height:48px;border-radius:17px;background:var(--soft);display:grid;place-items:center;font-size:25px}.brand h1{font-size:23px;letter-spacing:.08em;margin:0;color:var(--green)}.brand p{margin:3px 0 0;color:var(--muted);font-size:13px}.tag{margin-left:auto;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:11px;color:var(--muted);background:#ffffff8c}
+.panel{background:var(--paper);border:1px solid #e6e9df;border-radius:26px;box-shadow:var(--shadow);overflow:hidden}.welcome{padding:24px 22px 18px}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:11px;color:var(--green);font-weight:750}.welcome h2{font-size:clamp(26px,6vw,36px);line-height:1.12;letter-spacing:-.04em;margin:10px 0}.welcome p{line-height:1.6;color:var(--muted);margin:0;max-width:540px}.mood-label{font-weight:700;font-size:14px;margin:22px 0 10px}.moods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mood{border:1px solid var(--line);background:#fff;border-radius:15px;padding:12px 8px;color:var(--ink);text-align:center;transition:.15s}.mood:hover,.mood.selected{border-color:var(--green);background:var(--soft);transform:translateY(-1px)}.mood span{display:block;font-size:22px;margin-bottom:5px}.mood small{font-size:12px;font-weight:650}
+.name-row{display:flex;gap:8px;margin-top:16px}.name-row input{min-width:0;flex:1;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;color:var(--ink)}.primary{border:0;background:var(--green);color:#fff;border-radius:13px;padding:12px 16px;font-weight:750}.primary:disabled{opacity:.45;cursor:not-allowed}.privacy{font-size:11px;color:var(--muted);line-height:1.5;margin-top:12px}
+.chat-head{padding:16px 20px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--line);background:#fbfcf7}.avatar{width:38px;height:38px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-size:20px}.chat-head strong{display:block}.chat-head small{color:var(--muted)}.back{margin-left:auto;border:1px solid var(--line);background:white;color:var(--green);border-radius:11px;padding:8px 10px;font-size:12px}
+.messages{padding:20px;display:flex;flex-direction:column;gap:13px;min-height:280px;max-height:55vh;overflow:auto}.day{text-align:center;font-size:10px;color:#87958a;letter-spacing:.12em}.msg{max-width:88%;padding:12px 14px;border-radius:18px;line-height:1.5;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere}.msg.bot{background:#eef3ed;border-top-left-radius:5px;align-self:flex-start}.msg.user{background:var(--user);border-top-right-radius:5px;align-self:flex-end}.typing{color:var(--muted);font-style:italic;font-size:12px;padding:0 20px 10px}
+.quick{padding:0 20px 14px;display:flex;flex-wrap:wrap;gap:7px}.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;font-size:12px;color:var(--green)}.composer{border-top:1px solid var(--line);padding:13px;display:flex;gap:9px;align-items:flex-end;background:#fbfcf7}.composer textarea{flex:1;resize:none;min-height:44px;max-height:120px;border:1px solid var(--line);border-radius:15px;padding:12px;background:white;outline-color:var(--green);color:var(--ink)}.send{width:45px;height:45px;border:0;border-radius:14px;background:var(--green);color:white;font-size:19px}.footer{font-size:11px;line-height:1.55;color:var(--muted);padding:14px 20px 18px}.hidden{display:none!important}.reset{display:flex;justify-content:center;margin:15px}.reset button{background:transparent;border:0;color:var(--muted);text-decoration:underline;font-size:12px}
+@media(max-width:480px){.wrap{padding:14px 10px 24px}.welcome{padding:20px 16px 16px}.moods{grid-template-columns:repeat(2,1fr)}.tag{display:none}.messages{padding:16px;max-height:54vh}.msg{max-width:94%}.quick{padding:0 14px 12px}.footer{padding:12px 16px 16px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="brand"><div class="mark">🌿</div><div><h1>MILO</h1><p>Ton compagnon du quotidien</p></div><span class="tag">Prototype test</span></header>
+  <section class="panel" id="start">
+    <div class="welcome">
+      <div class="eyebrow">Un espace à toi</div>
+      <h2>Alors, comment<br>tu te sens aujourd’hui&nbsp;?</h2>
+      <p>Tu peux parler comme tu parles d’habitude. Pas besoin de trouver les mots parfaits, ni de tout expliquer d’un coup.</p>
+      <div class="mood-label">Choisis ce qui te ressemble le plus</div>
+      <div class="moods" id="moods">
+        <button class="mood" data-mood="fatigué"><span>😮‍💨</span><small>Fatigué</small></button>
+        <button class="mood" data-mood="pas bien"><span>💙</span><small>Pas trop bien</small></button>
+        <button class="mood" data-mood="stressé"><span>😵‍💫</span><small>Stressé</small></button>
+        <button class="mood" data-mood="ennuyé"><span>🥱</span><small>Je m’ennuie</small></button>
+        <button class="mood" data-mood="heureux"><span>☀️</span><small>De bonne humeur</small></button>
+        <button class="mood" data-mood="envie de parler"><span>💬</span><small>Envie de parler</small></button>
+      </div>
+      <div class="name-row"><input id="name" maxlength="30" placeholder="Ton prénom (facultatif)" aria-label="Ton prénom, facultatif"><button class="primary" id="startBtn" disabled>On parle ?</button></div>
+      <div class="privacy">Ton prénom est facultatif. Dans cette version de démonstration, la conversation reste dans cette page et n’est pas enregistrée sur un compte.</div>
+    </div>
+  </section>
+
+  <section class="panel hidden" id="chat">
+    <div class="chat-head"><div class="avatar">🌿</div><div><strong>MILO</strong><small>On prend ça tranquillement.</small></div><button class="back" id="changeMood">Changer d’humeur</button></div>
+    <div class="messages" id="messages"><div class="day">AUJOURD’HUI</div></div>
+    <div class="quick" id="quick"></div>
+    <div class="composer"><textarea id="input" rows="1" placeholder="Écris comme tu le sens…"></textarea><button class="send" id="send" aria-label="Envoyer">➤</button></div>
+    <div class="footer">MILO est une IA, pas un thérapeute ni un humain. Évite de partager des informations très personnelles. Si tu es en danger ou en grande détresse, contacte une personne de confiance ou les services d’urgence de ta région.</div>
+  </section>
+  <div class="reset hidden" id="reset"><button>Effacer la conversation et recommencer</button></div>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+let mood="", userName="", turn=0, busy=false;
+const start=$("#start"), chat=$("#chat"), messages=$("#messages"), quick=$("#quick"), input=$("#input");
+$("#moods").addEventListener("click",e=>{const b=e.target.closest("[data-mood]");if(!b)return;document.querySelectorAll(".mood").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");mood=b.dataset.mood;$("#startBtn").disabled=false;});
+$("#startBtn").addEventListener("click",()=>{userName=$("#name").value.trim();start.classList.add("hidden");chat.classList.remove("hidden");$("#reset").classList.remove("hidden");const greet={
+"fatigué":`Ah ouais… 😮‍💨 C’est une grosse journée qui t’a vidé, ou cette fatigue traîne depuis un moment ?`,
+"pas bien":`Oh… qu’est-ce qui se passe ? Tu peux m’en parler comme ça vient, même si c’est un peu en désordre.`,
+"stressé":`Aïe, ça tourne beaucoup dans ta tête là ? C’est quelque chose de précis qui te stresse, ou un peu tout en même temps ?`,
+"ennuyé":`Ah, journée longue comme ça ? 😅 Tu veux qu’on trouve un truc sympa à faire, ou tu veux juste papoter ?`,
+"heureux":`Ah ça, on aime ! 😄 Qu’est-ce qui te met de bonne humeur aujourd’hui ?`,
+"envie de parler":`Je t’écoute. Qu’est-ce qui te passe par la tête en ce moment ?`
+};addMsg("bot", (userName?userName+", ":"")+greet[mood]);setQuick();});
+function addMsg(who,text){const el=document.createElement("div");el.className="msg "+who;el.textContent=text;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;}
+function setQuick(){quick.innerHTML="";let options=mood==="fatigué"?["C’est surtout physique","J’ai trop de choses en tête","Je sais pas trop"]:mood==="pas bien"?["Il s’est passé quelque chose","Je me sens comme ça sans raison","J’ai juste besoin de parler"]:mood==="stressé"?["Le travail ou les études","Un problème personnel","Tout s’accumule"]:mood==="ennuyé"?["Propose-moi une activité","Fais-moi rire","On papote"]:mood==="heureux"?["Une bonne nouvelle !","Je sais pas, je me sens bien","Aide-moi à profiter de ma journée"]:["J’ai besoin d’un avis","Je veux raconter un truc","Changeons-nous les idées"];options.forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=t;b.onclick=()=>sendText(t);quick.appendChild(b);});}
+function replyFor(text){
+ const t=text.toLowerCase();
+ if(/physique|mal dormi|sommeil|dormi/.test(t))return "Ah, ton corps réclame peut-être une pause. Tu as pu manger et boire un peu aujourd’hui ?";
+ if(/tête|pensée|trop de choses|accumule|stress/.test(t))return "Ouais, quand tout arrive en même temps, ça peut vite faire beaucoup. C’est quoi le truc qui prend le plus de place dans ta tête là ?";
+ if(/je sais pas|sans raison|aucune idée|vide/.test(t))return "C’est ok de ne pas savoir l’expliquer. On n’est pas obligé de trouver une réponse tout de suite. Tu préfères qu’on reste sur ce sujet ou qu’on pense à autre chose un moment ?";
+ if(/activité|faire/.test(t))return "On peut faire simple : prendre l’air dix minutes, écouter un morceau que tu aimes, préparer quelque chose à manger ou appeler quelqu’un avec qui tu te sens bien. Lequel te tente le plus ?";
+ if(/rire|blague/.test(t))return "Ok, je tente 😅 Pourquoi les plongeurs plongent-ils toujours en arrière et jamais en avant ? Parce que sinon ils tombent dans le bateau. Bon… je peux faire mieux, promis.";
+ if(/papot|parler|raconter|avis/.test(t))return "Vas-y, je t’écoute. Qu’est-ce qui s’est passé ?";
+ if(/travail|étude|cours/.test(t))return "Ah, ça peut peser. C’est une tâche précise qui te bloque, ou c’est plutôt la pression autour de tout ça ?";
+ if(/personnel|problème|gens/.test(t))return "Les histoires personnelles, ça peut prendre beaucoup d’énergie. Qu’est-ce qui s’est passé ?";
+ if(/musique|chanson/.test(t))return "Tu veux plutôt une ambiance calme pour souffler, un son qui remonte l’énergie, ou quelque chose qui colle à ton humeur actuelle ?";
+ if(/merci/.test(t))return "Avec plaisir 🙂 Tu veux qu’on continue à en parler ou on passe à autre chose ?";
+ if(/rien|laisse|bof/.test(t))return "Pas de pression. On peut prendre ça doucement. Tu préfères que je te change les idées un peu ?";
+ if(turn===0)return "Ah ouais, raconte-moi un peu. Qu’est-ce qui te fait dire ça ?";
+ if(turn===1)return "Je vois. Et toi, tu le vis comment, là, honnêtement ?";
+ return "D’accord. On peut prendre les choses une par une. Tu veux qu’on cherche une petite solution, ou tu préfères juste vider ton sac ?";
+}
+async function sendText(text){if(!text||busy)return;busy=true;addMsg("user",text);input.value="";turn++;const typing=document.createElement("div");typing.className="typing";typing.textContent="MILO réfléchit…";messages.appendChild(typing);messages.scrollTop=messages.scrollHeight;
+ let response;
+ try{const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mood,name:userName,message:text,turn})});if(r.ok){const data=await r.json();response=data.reply;}}catch(e){}
+ if(!response)response=replyFor(text);
+ typing.remove();addMsg("bot",response);setQuick();busy=false;}
+$("#send").addEventListener("click",()=>sendText(input.value.trim()));input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendText(input.value.trim());}});
+$("#changeMood").addEventListener("click",()=>{chat.classList.add("hidden");start.classList.remove("hidden");messages.innerHTML='<div class="day">AUJOURD’HUI</div>';turn=0;});
+$("#reset button").addEventListener("click",()=>{mood="";userName="";turn=0;busy=false;$("#name").value="";document.querySelectorAll(".mood").forEach(x=>x.classList.remove("selected"));$("#startBtn").disabled=true;chat.classList.add("hidden");$("#reset").classList.add("hidden");start.classList.remove("hidden");messages.innerHTML='<div class="day">AUJOURD’HUI</div>';});
+</script>
+</body></html>
